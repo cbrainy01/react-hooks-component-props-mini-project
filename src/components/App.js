@@ -1,13 +1,27 @@
 import React from "react";
 import blogData from "../data/blog";
+import Header from "./Header"
+import About from "./About"
+import Article from "./ArticleList"
 
 console.log(blogData);
 
+
+
 function App() {
+
+  //iterate through post array and create component for each
+   
+   const createPosts = blogData.posts.map( (post) => {
+      return <Article key={post.id} title={post.title} date={post.date} preview={post.preview} minutes={post.minutes}/>
+    } )
+  
+
   return (
     <div className="App">
-      You're on your own from here! Follow the deliverables; test things out in
-      the browser as you write your code; and good luck!
+      <Header name={blogData.name}/>
+      <About pic={blogData.image} altAtt="blog logo" about={blogData.about}/>
+      <main>{createPosts}</main>
     </div>
   );
 }
